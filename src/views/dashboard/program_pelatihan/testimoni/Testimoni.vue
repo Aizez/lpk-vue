@@ -118,7 +118,7 @@
             {{ item.testimoni }}
           </md-table-cell>
           <md-table-cell md-label="Foto Peserta">
-            <img :src="item.image" style="width: 30%" />
+            <img :src="item.image" style="width: 20%" />
           </md-table-cell>
           <md-table-cell style="padding-left: 30px">
             <router-link

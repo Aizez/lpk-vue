@@ -11,88 +11,128 @@
         class="img-fluid"
         style="width: 100%; margin-top: -7px"
       />
-      <div
-        class="section section-basic"
-        style="padding-bottom: 50px; padding-top: 20px"
-      >
-        <div class="container">
-          <div class="md-layout md-size-50">
-            <div class="md-layout-item md-size-50">
-              <h1 class="kontak">
-                Ada yang bisa dibantu?
-              </h1>
-            </div>
-          </div>
-          <div class="md-layout md-size-50" style="margin-top: 50px;">
-            <div class="md-layout-item md-size-55 kontak">
+      <div class="section section-basic" style="padding-bottom: 0px">
+        <div class="container" style="margin-top: -50px;">
+          <h1
+            class="title"
+            style="color:#0f0f5f; font-size: 42px; margin-bottom: 10px"
+          >
+            Latest
+          </h1>
+          <hr style="color: solid; width: 100%" />
+
+          <row :gutter="12" :columns="10" style="margin-top: 40px;">
+            <column :xs="10" :lg="6">
               <img
-                :src="kontak"
+                :src="info"
                 :class="{ 'responsive-image': responsive }"
-                style="width: 70%"
+                class="img-raised img-fluid"
+                style="border-radius: 20px; width: 700px; height: auto;"
               />
+            </column>
+            <column :xs="10" :lg="4">
+              <div style="font-size: 12px; color: #0F0F5F">
+                1 Januari 2022
+              </div>
+              <div
+                class="title"
+                style="margin-top: 0px; margin-bottom: 15px; font-size: 30px; line-height: 35px; text-align: justify;"
+              >
+                Kembali Dibuka! Kelas Program A, Januari 2022
+              </div>
+              <div style="text-align: justify; color: #0F0F5F">
+                Kelas Program A pada Januari 2022 kembali dibuka. Para peserta
+                dapat mengikuti kembali kelas seperti biasa melalui kelas tatap
+                muka maupun kelas daring.
+              </div>
+            </column>
+          </row>
+
+          <div class="md-layout" style="margin-top: 40px">
+            <div class="col2" style="margin: 0px 15px 10px 15px">
+              <img
+                :src="info"
+                :class="{ 'responsive-image': responsive }"
+                class="img-raised img-fluid"
+                style="border-radius: 20px; width: 700px; height: auto;"
+              />
+              <div style="font-size: 12px; color: #0F0F5F">
+                1 Januari 2022
+              </div>
+              <div
+                class="title"
+                style="margin-top: 0px; margin-bottom: 15px; font-size: 1.125rem; line-height: 20px; text-align: justify;"
+              >
+                Kembali Dibuka! Kelas Program A, Januari 2022
+              </div>
+              <div style="text-align: justify; color: #0F0F5F">
+                Kelas Program A pada Januari 2022 kembali dibuka. Para peserta
+                dapat mengikuti kembali kelas seperti biasa melalui kelas tatap
+                muka maupun kelas daring.
+              </div>
             </div>
-            <div
-              class="md-layout-item md-size-40 kontak"
-              style="margin-top: 50px"
-            >
-              <h3 class="kontak">
-                Kantor Pusat Brantas Abipraya
-              </h3>
-              <h4 class="kontak">
-                Jl. D.I. Panjaitan Kav. 14, Cawang, Jakarta Timur 13340
-                <div class="md-layout" style="margin-top: 20px">
-                  <div class="md-layout-item md-size-20">
-                    <img
-                      :src="phone"
-                      :class="{ 'responsive-image': responsive }"
-                      style="width: 80%"
-                    />
-                  </div>
-                  <div
-                    class="md-layout-item md-size-50"
-                    style="margin-top: -7px;"
-                  >
-                    <span style="font-size: 10px; margin-left: -30px"
-                      >Telepon</span
-                    >
-                    <p style="margin-top: -10px; margin-left: -30px">
-                      (021) 851 6290
-                    </p>
-                  </div>
-                </div>
-                <div class="md-layout" style="margin-top: 0px;">
-                  <div class="md-layout-item md-size-20">
-                    <img
-                      :src="email"
-                      :class="{ 'responsive-image': responsive }"
-                      style="width: 80%"
-                    />
-                  </div>
-                  <div
-                    class="md-layout-item md-size-50"
-                    style="margin-top: -7px;"
-                  >
-                    <span style="font-size: 10px; margin-left: -30px"
-                      >Email</span
-                    >
-                    <p style="margin-top: -10px; margin-left: -30px">
-                      brap@brantas-abipraya.co.id
-                    </p>
-                  </div>
-                </div>
-              </h4>
+            <div class="col2" style="margin: 0px 15px 10px 15px">
+              <img
+                :src="info"
+                :class="{ 'responsive-image': responsive }"
+                class="img-raised img-fluid"
+                style="border-radius: 20px; width: 700px; height: auto;"
+              />
+              <div style="font-size: 12px; color: #0F0F5F">
+                1 Januari 2022
+              </div>
+              <div
+                class="title"
+                style="margin-top: 0px; margin-bottom: 15px; font-size: 1.125rem; line-height: 20px; text-align: justify;"
+              >
+                Kembali Dibuka! Kelas Program A, Januari 2022
+              </div>
+              <div style="text-align: justify; color: #0F0F5F">
+                Kelas Program A pada Januari 2022 kembali dibuka. Para peserta
+                dapat mengikuti kembali kelas seperti biasa melalui kelas tatap
+                muka maupun kelas daring.
+              </div>
+            </div>
+            <div class="col2" style="margin: 0px 15px 10px 15px">
+              <img
+                :src="info"
+                :class="{ 'responsive-image': responsive }"
+                class="img-raised img-fluid"
+                style="border-radius: 20px; width: 700px; height: auto;"
+              />
+              <div style="font-size: 12px; color: #0F0F5F">
+                1 Januari 2022
+              </div>
+              <div
+                class="title"
+                style="margin-top: 0px; margin-bottom: 15px; font-size: 1.125rem; line-height: 20px; text-align: justify;"
+              >
+                Kembali Dibuka! Kelas Program A, Januari 2022
+              </div>
+              <div style="text-align: justify; color: #0F0F5F">
+                Kelas Program A pada Januari 2022 kembali dibuka. Para peserta
+                dapat mengikuti kembali kelas seperti biasa melalui kelas tatap
+                muka maupun kelas daring.
+              </div>
             </div>
           </div>
+          <!-- <md-card style="background-color: #0F0F5F; border-radius: 15px">
+            <div class="container card-program">
+              <h1>{{ programData.nama_program }}</h1>
+              <p>
+                {{ programData.desc_program }}
+              </p>
+            </div>
+          </md-card> -->
         </div>
       </div>
       <img
         :src="vector1"
         :class="{ 'responsive-image': responsive }"
         class="img-fluid"
-        style="width: 100%; margin-bottom: -6px;"
+        style="width: 100%; margin-bottom: -6px"
       />
     </div>
-
     <go-top
       bg-color="#fae019"
       fg-color="#0f0f5f"
@@ -114,6 +154,14 @@ export default {
   name: "profil",
   bodyClass: "index-page",
   props: {
+    profil: {
+      type: String,
+      default: require("@/assets/img/examples/pixeltrue-success.png")
+    },
+    info: {
+      type: String,
+      default: require("@/assets/img/examples/image1.jpeg")
+    },
     vector: {
       type: String,
       default: require("@/assets/img/examples/vector.png")
@@ -122,34 +170,41 @@ export default {
       type: String,
       default: require("@/assets/img/examples/vector1.png")
     },
-    kontak: {
+    image: {
       type: String,
-      default: require("@/assets/img/examples/pixeltrue-idea.png")
-    },
-    phone: {
-      type: String,
-      default: require("@/assets/img/logo/phone.png")
-    },
-    email: {
-      type: String,
-      default: require("@/assets/img/logo/email.png")
+      default: require("@/assets/img/logo/image.png")
     }
   },
-  data() {
-    return {
-      leafShow: false,
-      scTimer: 0,
-      scY: 0
-    };
+  computed: {
+    ...mapState("program", ["programData", "programList"]),
+    ...mapState("detailProgram", ["detailProgramList"]),
+    ...mapState("gallery", ["galleryList"]),
+    ...mapState("testimoni", ["testimoniList"]),
+    ...mapState("peserta", ["pesertaList"]),
+    headerStyle() {
+      return {
+        // backgroundImage: `url(${this.homeGalleryData.sampul_image})`
+      };
+    },
+    wrapperStyle() {
+      return {
+        // backgroundImage: `url(${this.temaData.tema_image})`
+      };
+    }
   },
   methods: {
-    ...mapActions("homeGallery", ["getHomeGallery", "getHomeGalleryList"]),
-    ...mapActions("tema", ["getTema", "getTemaList"]),
+    ...mapActions("program", ["getProgram", "getProgramList"]),
+    ...mapActions("detailProgram", ["getDetailProgramList"]),
+    ...mapActions("gallery", ["getGalleryList"]),
+    ...mapActions("testimoni", ["getTestimoniList"]),
+    ...mapActions("peserta", ["getPesertaList"]),
     async onFetchData() {
-      await this.getTemaList();
-      await this.getTema({ id: "1" });
-      await this.getHomeGalleryList();
-      await this.getHomeGallery({ id: "1" });
+      await this.getProgram({ id: this.$route.params.id });
+      await this.getDetailProgramList();
+      await this.getProgramList();
+      await this.getGalleryList();
+      await this.getTestimoniList();
+      await this.getPesertaList();
     },
     onResponsiveInverted() {
       if (window.innerWidth < 600) {
@@ -174,20 +229,6 @@ export default {
         top: 0,
         behavior: "smooth"
       });
-    }
-  },
-  computed: {
-    ...mapState("homeGallery", ["homeGalleryData", "homeGalleryList"]),
-    ...mapState("tema", ["temaData", "temaList"]),
-    headerStyle() {
-      return {
-        // backgroundImage: `url(${this.homeGalleryData.sampul_image})`
-      };
-    },
-    wrapperStyle() {
-      return {
-        // backgroundImage: `url(${this.temaData.tema_image})`
-      };
     }
   },
   async mounted() {
@@ -215,5 +256,3 @@ export default {
   }
 }
 </style>
-
-<style lang="css"></style>

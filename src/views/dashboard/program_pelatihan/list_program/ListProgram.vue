@@ -79,7 +79,7 @@
             {{ item.desc_program }}
           </md-table-cell>
           <md-table-cell md-label="Image" md-sort-by="image">
-            <img :src="item.image" style="width: 30%" />
+            <img :src="item.image" style="width: 20%" />
           </md-table-cell>
           <md-table-cell style="padding-left: 30px">
             <router-link

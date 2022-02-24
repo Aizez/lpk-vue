@@ -22,6 +22,7 @@ import { VERIFY_AUTH } from "./services/store/auth.module";
 import VueQuillEditor from "vue-quill-editor";
 import VShowSlide from "v-show-slide";
 import VueConfirmDialog from "vue-confirm-dialog";
+import { Row, Column } from "vue-grid-responsive";
 
 // import Kmeans from "node-kmeans";
 
@@ -39,6 +40,8 @@ Vue.use(VShowSlide);
 
 Vue.use(VueConfirmDialog);
 Vue.component("vue-confirm-dialog", VueConfirmDialog.default);
+Vue.component("row", Row);
+Vue.component("column", Column);
 // Vue.use(Kmeans);
 
 ApiService.init();

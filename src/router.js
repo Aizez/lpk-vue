@@ -16,8 +16,8 @@ import BlankNavbar from "./layout/BlankNavbar.vue";
 import Profil from "./views/pages/Profil.vue";
 import Program from "./views/pages/Program.vue";
 import Kontak from "./views/pages/Kontak.vue";
-import AllNewInfo from "./views/pages/AllNewInfo.vue";
-import NewInfo from "./views/pages/NewInfo.vue";
+import Blog from "./views/pages/AllNewInfo.vue";
+import SingleBlog from "./views/pages/NewInfo.vue";
 
 import Login from "./views/pages/Login.vue";
 
@@ -112,10 +112,10 @@ export default new Router({
       }
     },
     {
-      path: "/all-new-info",
-      name: "all-new-info",
+      path: "/blog",
+      name: "blog",
       components: {
-        default: AllNewInfo,
+        default: Blog,
         header: MainNavbar,
         footer: MainFooter
       },
@@ -125,9 +125,13 @@ export default new Router({
       }
     },
     {
-      path: "/new-info/:id",
-      name: "new-info",
-      components: { default: NewInfo, header: MainNavbar, footer: MainFooter },
+      path: "/blog/:id",
+      name: "blog",
+      components: {
+        default: SingleBlog,
+        header: MainNavbar,
+        footer: MainFooter
+      },
       props: {
         header: { colorOnScroll: 400 },
         footer: { backgroundColor: "black" }
