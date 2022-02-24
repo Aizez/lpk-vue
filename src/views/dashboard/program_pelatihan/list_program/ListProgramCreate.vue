@@ -1,0 +1,288 @@
+<template>
+  <div class="content">
+    <div
+      class="alert alert-danger alert-with-icon"
+      data-notify="container"
+      v-if="auth.user.level != 'admin' && auth.user.level != 'superuser'"
+    >
+      <button
+        type="button"
+        aria-hidden="true"
+        @click="onLogout"
+        class="close"
+        style="padding: 0px 30px 15px 0px"
+      >
+        <h3>×</h3>
+      </button>
+      <i data-notify="icon" class="material-icons">add_alert</i>
+      <h4 data-notify="message">
+        Maaf! Silahkan lakukan login terlebih dahulu untuk dapat mengakses
+        halaman ini
+      </h4>
+    </div>
+    <div
+      style="margin-top: 50px;"
+      v-if="auth.user.level == 'superuser' || auth.user.level == 'admin'"
+    >
+      <span style="font-size: 18px;"
+        ><a href="#/dashboard/list-program-pelatihan" style="color: grey"
+          >List Program Pelatihan
+        </a></span
+      >
+      <span style="font-size: 17px; padding: 0px 5px"> > </span>
+      <span style="font-size: 18px">Tambah Program Pelatihan LPK</span>
+    </div>
+    <form
+      ref="form"
+      novalidate
+      class="md-layout"
+      @submit.prevent="onSubmit"
+      v-if="auth.user.level == 'superuser' || auth.user.level == 'admin'"
+    >
+      <md-card
+        class="md-layout-item md-size-95 md-small-size-100"
+        style="padding: 0px 20px 30px 20px; margin-left: 30px;"
+      >
+        <md-card-header>
+          <div class="md-title">
+            <h2 style="letter-spacing: 2px;color: green;margin-top:30px;">
+              <strong>Input Program Pelatihan LPK</strong>
+            </h2>
+          </div>
+        </md-card-header>
+
+        <md-card-content>
+          <div class="md-layout md-gutter">
+            <div class="md-layout-item md-small-size-100">
+              <md-field :class="getValidationClass('nama_program')">
+                <label for="nama_program">Nama Program Pelatihan...</label>
+                <md-input
+                  name="nama_program"
+                  id="nama_program"
+                  v-model="programData.nama_program"
+                  md-dense
+                  :disabled="sending"
+                >
+                </md-input>
+                <span
+                  class="md-error"
+                  v-if="!$v.programData.nama_program.required"
+                  >Nama Program Pelatihan is required</span
+                >
+              </md-field>
+            </div>
+          </div>
+          <div class="md-layout md-gutter">
+            <div class="md-layout-item md-small-size-100">
+              <md-field :class="getValidationClass('desc_program')">
+                <label for="desc_program">Deskripsi Program Pelatihan...</label>
+                <md-textarea
+                  name="desc_program"
+                  id="desc_program"
+                  v-model="programData.desc_program"
+                  md-dense
+                  :disabled="sending"
+                >
+                </md-textarea>
+                <span
+                  class="md-error"
+                  v-if="!$v.programData.desc_program.required"
+                  >Deskripsi Program Pelatihan is required</span
+                >
+              </md-field>
+            </div>
+          </div>
+          <div class="md-layout md-gutter" style="margin-top: 20px">
+            <div class="md-layout-item md-small-size-100">
+              <md-field :class="getValidationClass('image')">
+                <label for="image">Image Program Pelatihan...</label>
+                <md-file
+                  ref="image"
+                  name="image"
+                  id="image"
+                  v-model="programData.image"
+                  @md-change="onFileUpload($event)"
+                  placeholder="Upload Image Program Pelatihan"
+                  :disabled="sending"
+                />
+                <span class="md-error" v-if="!$v.programData.image.required"
+                  >Image Program Pelatihan is required</span
+                >
+              </md-field>
+            </div>
+          </div>
+        </md-card-content>
+
+        <md-card-actions style="padding-top: 50px">
+          <md-button
+            type="submit"
+            class="md-login md-success md-lg md-round"
+            :disabled="sending"
+            style="height: 50px; width: 140px"
+            ><span
+              style="color: white; font-size: 17px; text-transform: capitalize; bottom: 5px"
+            >
+              Submit
+            </span>
+          </md-button>
+        </md-card-actions>
+
+        <md-progress-bar md-mode="indeterminate" v-if="sending" />
+      </md-card>
+
+      <md-snackbar :md-active.sync="userSaved"
+        >The user was saved with success!</md-snackbar
+      >
+    </form>
+  </div>
+</template>
+
+<script>
+import { mapState, mapActions } from "vuex";
+import { validationMixin } from "vuelidate";
+import { LOGOUT } from "@/services/store/auth.module";
+import { required, minLength, maxLength } from "vuelidate/lib/validators";
+
+export default {
+  name: "FormValidation",
+  mixins: [validationMixin],
+  data: () => ({
+    form: {
+      nama_program: null,
+      desc_program: null,
+      image: null
+    },
+    userSaved: false,
+    sending: false
+  }),
+  validations: {
+    programData: {
+      nama_program: {
+        required
+      },
+      desc_program: {
+        required
+      },
+      image: {
+        required
+      }
+    }
+  },
+  props: {
+    header: {
+      type: String,
+      default: require("@/assets/img/gedung-upj.jpg")
+    },
+    logo: {
+      type: String,
+      default: require("@/assets/img/logo/upj-logo.png")
+    }
+  },
+  computed: {
+    ...mapState(["auth"]),
+    ...mapState("program", ["programData"]),
+    headerStyle() {
+      return {
+        backgroundImage: `url(${this.header})`
+      };
+    }
+  },
+  methods: {
+    ...mapActions("program", ["createProgram"]),
+    async onFetchData() {},
+    onFileUpload(event) {
+      this.image = event[0];
+      this.programData.image = event[0];
+    },
+    async onSubmit() {
+      this.$v.$touch();
+      this.sending = true;
+      if (!this.$v.invalid) {
+        try {
+          let formData = new FormData();
+          for (const property in this.programData) {
+            // console.log(property, this.programData[property]);
+            formData.append(property, this.programData[property]);
+          }
+          // let image = this.$refs.image.files[0];
+          formData.append("image", this.image);
+          await this.createProgram({
+            id: this.$route.params.id,
+            payload: formData
+          });
+
+          // console.log(formData);
+          this.sending = false;
+          this.programData = {};
+          this.$router.push({ name: "list-program-pelatihan" });
+        } catch (error) {
+          this.sending = false;
+          throw Error(error);
+        }
+      }
+    },
+    // async onSubmit() {
+    //   this.$v.$touch();
+    //   this.sending = true;
+    //   if (!this.$v.invalid) {
+    //     try {
+    //       await this.createProgram({
+    //         id: this.$route.params.id,
+    //         payload: this.programData
+    //       });
+    //       this.sending = false;
+    //       this.programData = {};
+    //       this.$router.push({ name: "list-program-pelatihan" });
+    //     } catch (error) {
+    //       this.sending = false;
+    //       throw Error(error);
+    //     }
+    //   }
+    // },
+    getValidationClass(fieldName) {
+      const field = this.$v.programData[fieldName];
+
+      if (field) {
+        return {
+          "md-invalid": field.$invalid && field.$dirty
+        };
+      }
+    },
+    onLogout() {
+      this.$store.dispatch(LOGOUT).then(() =>
+        this.$router.push({
+          name: "login"
+        })
+      );
+    },
+    saveUser() {
+      this.sending = true;
+      window.setTimeout(() => {
+        this.userSaved = true;
+        this.sending = false;
+        this.clearForm();
+      }, 1500);
+    },
+    validateUser() {
+      this.$v.$touch();
+
+      if (!this.$v.$invalid) {
+        this.saveUser();
+      }
+    }
+  },
+  async mounted() {
+    await this.onFetchData();
+    this.onResponsiveInverted();
+    window.addEventListener("resize", this.onResponsiveInverted);
+  }
+};
+</script>
+
+<style lang="scss" scoped></style>
+
+<style lang="css">
+.md-progress-bar {
+  margin: 24px;
+}
+</style>

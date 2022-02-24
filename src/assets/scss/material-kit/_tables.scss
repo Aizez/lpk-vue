@@ -1,0 +1,76 @@
+.md-table-cell-container{
+  padding: 0;
+  .md-table-cell:last-child &{
+    padding-right: 0;
+    text-align: right;
+    display: flex;
+  }
+}
+.md-table-head-container{
+  height: auto;
+  padding: 0;
+}
+.md-tabs-content table thead{
+  display: none;
+}
+
+.md-tabs-container tbody .md-table-row:first-child td{
+  border: 0;
+}
+
+.md-table-cell{
+  padding: 12px 5px;
+  font-size: 14px;
+}
+
+.md-table-head-label{
+  color: rgb(71, 71, 71);
+  font-size: $font-size-h4;
+  padding-left: 5px;
+  // margin-bottom: 10px;
+  font-weight: 410;
+  // border-bottom: 1px solid;
+  // height: 50px;
+  // max-width: 150px;
+  word-wrap: break-word !important;
+  // text-align: center !important;
+}
+
+// .md-table .md-table-row:hover .md-table-cell{
+//   background-color: transparent !important;
+// }
+
+.md-table .md-table-row:hover .md-table-cell{
+  background-color: #e3e3e3 !important;
+}
+
+.md-table .md-table-row:hover{
+  background: $table-bg-hover !important;
+}
+
+.md-card-plain .md-card-content > div .md-table .md-table-content,
+.md-card-plain .md-card-content > div .md-table {
+  background-color: transparent !important;
+}
+
+.md-table{
+  &[table-header-color="orange"] .md-table-head{
+    color: $brand-warning !important;
+  }
+  &[table-header-color="purple"] .md-table-head{
+    color: $brand-primary !important;
+  }
+  &[table-header-color="blue"] .md-table-head{
+    color: $brand-info !important;
+  }
+  &[table-header-color="red"] .md-table-head{
+    color: $brand-danger !important;
+  }
+  &[table-header-color="green"] .md-table-head{
+    color: $brand-success !important;
+  }
+
+  .md-table-row td{
+    border-top-color: rgba(0,0,0,.06) !important;
+  }
+}
