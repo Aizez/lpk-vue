@@ -25,10 +25,10 @@
       v-if="auth.user.level == 'superuser' || auth.user.level == 'admin'"
     >
       <span style="font-size: 18px;"
-        ><a href="#/dashboard/info" style="color: grey">Info </a></span
+        ><a href="#/dashboard/blog" style="color: grey">Post Blog </a></span
       >
       <span style="font-size: 17px; padding: 0px 5px"> > </span>
-      <span style="font-size: 18px">Tambah Info</span>
+      <span style="font-size: 18px">Tambah Post Baru</span>
     </div>
     <form
       ref="form"
@@ -39,12 +39,12 @@
     >
       <md-card
         class="md-layout-item md-size-95 md-small-size-100"
-        style="padding: 0px 20px 30px 20px; margin-left: 30px;"
+        style="padding: 0px 20px 30px 20px; margin-left: 30px"
       >
         <md-card-header>
           <div class="md-title">
             <h2 style="letter-spacing: 2px;color: green;margin-top:30px;">
-              <strong>Input Info</strong>
+              <strong>Input Detail Post</strong>
             </h2>
           </div>
         </md-card-header>
@@ -68,30 +68,15 @@
               </md-field>
             </div>
             <div class="md-layout-item md-small-size-100">
-              <md-field :class="getValidationClass('date')">
-                <md-input
-                  name="date"
-                  id="date"
-                  autocomplete="date"
-                  v-model="infoData.date"
-                  :disabled="sending"
-                  type="date"
-                />
-                <span class="md-error" v-if="!$v.infoData.date.required"
-                  >Tanggal is required</span
-                >
-              </md-field>
-            </div>
-            <div class="md-layout-item md-small-size-100">
               <md-field :class="getValidationClass('image')">
-                <label for="image">Image Program Pelatihan...</label>
+                <label for="image">Image...</label>
                 <md-file
                   ref="image"
                   name="image"
                   id="image"
                   v-model="infoData.image"
                   @md-change="onFileUpload($event)"
-                  placeholder="Upload Image "
+                  placeholder="Upload Image"
                   :disabled="sending"
                 />
                 <span class="md-error" v-if="!$v.infoData.image.required"
@@ -100,9 +85,10 @@
               </md-field>
             </div>
           </div>
-          <div class="md-layout md-gutter" style="margin-top: 20px">
+          <br />
+          <div class="md-layout md-gutter">
             <div class="md-layout-item md-small-size-100">
-              <label for="text">Text...</label>
+              <label for="text">Detail Post...</label>
               <md-field :class="getValidationClass('text')">
                 <quill-editor
                   ref="myQuillEditor"
@@ -123,6 +109,8 @@
               </md-field>
             </div>
           </div>
+          <br />
+          <br />
         </md-card-content>
 
         <md-card-actions style="padding-top: 50px">
@@ -153,7 +141,9 @@
 import { mapState, mapActions } from "vuex";
 import { validationMixin } from "vuelidate";
 import { LOGOUT } from "@/services/store/auth.module";
-import { required, minLength, maxLength } from "vuelidate/lib/validators";
+import Quill from "quill";
+
+import { required } from "vuelidate/lib/validators";
 
 export default {
   name: "FormValidation",
@@ -162,9 +152,8 @@ export default {
     editorOption: {},
     form: {
       title: null,
-      text: null,
-      date: null,
-      image: null
+      image: null,
+      text: null
     },
     userSaved: false,
     sending: false
@@ -174,13 +163,10 @@ export default {
       title: {
         required
       },
-      text: {
-        required
-      },
-      date: {
-        required
-      },
       image: {
+        required
+      },
+      text: {
         required
       }
     }
@@ -226,7 +212,7 @@ export default {
           }
           // let image = this.$refs.image.files[0];
           formData.append("image", this.image);
-          await this.createInfo({
+          await this.createGallery({
             id: this.$route.params.id,
             payload: formData
           });
@@ -241,24 +227,6 @@ export default {
         }
       }
     },
-    // async onSubmit() {
-    //   this.$v.$touch();
-    //   this.sending = true;
-    //   if (!this.$v.invalid) {
-    //     try {
-    //       await this.createInfo({
-    //         id: this.$route.params.id,
-    //         payload: this.infoData
-    //       });
-    //       this.sending = false;
-    //       this.infoData = {};
-    //       this.$router.push({ name: "list-info-pelatihan" });
-    //     } catch (error) {
-    //       this.sending = false;
-    //       throw Error(error);
-    //     }
-    //   }
-    // },
     onEditorBlur(quill) {
       // console.log("editor blur!", quill);
     },

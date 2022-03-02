@@ -17,105 +17,74 @@
             class="title"
             style="color:#0f0f5f; font-size: 42px; margin-bottom: 10px"
           >
-            Latest
+            Post Terbaru
           </h1>
           <hr style="color: solid; width: 100%" />
 
-          <row :gutter="12" :columns="10" style="margin-top: 40px;">
-            <column :xs="10" :lg="6">
-              <img
-                :src="info"
-                :class="{ 'responsive-image': responsive }"
-                class="img-raised img-fluid"
-                style="border-radius: 20px; width: 700px; height: auto;"
-              />
-            </column>
-            <column :xs="10" :lg="4">
-              <div style="font-size: 12px; color: #0F0F5F">
-                1 Januari 2022
+          <row
+            :gutter="12"
+            :columns="10"
+            style="margin-top: 40px;"
+            v-for="(latest, key) in latestList"
+            :key="key"
+          >
+            <column :xs="10" :lg="6" style="padding: 10px;">
+              <div v-for="(info, key) in infoList" :key="key">
+                <div v-if="info.title == latest.title">
+                  <img
+                    :src="info.image"
+                    :class="{ 'responsive-image': responsive }"
+                    class="img-raised img-fluid"
+                    style="border-radius: 20px; width: 700px; height: auto;"
+                  />
+                </div>
               </div>
+            </column>
+            <column :xs="10" :lg="4" style="padding: 0px 20px">
               <div
                 class="title"
                 style="margin-top: 0px; margin-bottom: 15px; font-size: 30px; line-height: 35px; text-align: justify;"
               >
-                Kembali Dibuka! Kelas Program A, Januari 2022
+                {{ latest.title }}
               </div>
-              <div style="text-align: justify; color: #0F0F5F">
-                Kelas Program A pada Januari 2022 kembali dibuka. Para peserta
-                dapat mengikuti kembali kelas seperti biasa melalui kelas tatap
-                muka maupun kelas daring.
+              <div class="latest" v-html="latest.text"></div>
+              <div style="margin-top: 10px; font-size: 12px; color: #0F0F5F">
+                <strong>{{ latest.date | moment("dddd, D MMMM YYYY") }}</strong>
               </div>
             </column>
           </row>
 
-          <div class="md-layout" style="margin-top: 40px">
-            <div class="col2" style="margin: 0px 15px 10px 15px">
-              <img
-                :src="info"
-                :class="{ 'responsive-image': responsive }"
-                class="img-raised img-fluid"
-                style="border-radius: 20px; width: 700px; height: auto;"
-              />
-              <div style="font-size: 12px; color: #0F0F5F">
-                1 Januari 2022
+          <row :gutter="12" :columns="12" style="padding-top: 20px">
+            <column
+              :xs="6"
+              :lg="4"
+              style="padding: 30px 25px"
+              v-for="(post, key) in postList.data"
+              :key="key"
+            >
+              <div v-for="(info, key) in infoList" :key="key">
+                <div v-if="info.title == post.title">
+                  <img
+                    :src="info.image"
+                    :class="{ 'responsive-image': responsive }"
+                    class="img-raised img-fluid"
+                    style="border-radius: 20px; width: 700px; height: auto;"
+                  />
+                </div>
               </div>
               <div
                 class="title"
-                style="margin-top: 0px; margin-bottom: 15px; font-size: 1.125rem; line-height: 20px; text-align: justify;"
+                style="margin-top: 20px; margin-bottom: 15px; font-size: 18px; line-height: 22px; text-align: justify;"
               >
-                Kembali Dibuka! Kelas Program A, Januari 2022
+                {{ post.title }}
               </div>
-              <div style="text-align: justify; color: #0F0F5F">
-                Kelas Program A pada Januari 2022 kembali dibuka. Para peserta
-                dapat mengikuti kembali kelas seperti biasa melalui kelas tatap
-                muka maupun kelas daring.
+              <div class="post" v-html="post.text"></div>
+              <div style="font-size: 11px; color: #0F0F5F; padding-top: 10px">
+                <strong>{{ post.date | moment("dddd, D MMMM YYYY") }}</strong>
               </div>
-            </div>
-            <div class="col2" style="margin: 0px 15px 10px 15px">
-              <img
-                :src="info"
-                :class="{ 'responsive-image': responsive }"
-                class="img-raised img-fluid"
-                style="border-radius: 20px; width: 700px; height: auto;"
-              />
-              <div style="font-size: 12px; color: #0F0F5F">
-                1 Januari 2022
-              </div>
-              <div
-                class="title"
-                style="margin-top: 0px; margin-bottom: 15px; font-size: 1.125rem; line-height: 20px; text-align: justify;"
-              >
-                Kembali Dibuka! Kelas Program A, Januari 2022
-              </div>
-              <div style="text-align: justify; color: #0F0F5F">
-                Kelas Program A pada Januari 2022 kembali dibuka. Para peserta
-                dapat mengikuti kembali kelas seperti biasa melalui kelas tatap
-                muka maupun kelas daring.
-              </div>
-            </div>
-            <div class="col2" style="margin: 0px 15px 10px 15px">
-              <img
-                :src="info"
-                :class="{ 'responsive-image': responsive }"
-                class="img-raised img-fluid"
-                style="border-radius: 20px; width: 700px; height: auto;"
-              />
-              <div style="font-size: 12px; color: #0F0F5F">
-                1 Januari 2022
-              </div>
-              <div
-                class="title"
-                style="margin-top: 0px; margin-bottom: 15px; font-size: 1.125rem; line-height: 20px; text-align: justify;"
-              >
-                Kembali Dibuka! Kelas Program A, Januari 2022
-              </div>
-              <div style="text-align: justify; color: #0F0F5F">
-                Kelas Program A pada Januari 2022 kembali dibuka. Para peserta
-                dapat mengikuti kembali kelas seperti biasa melalui kelas tatap
-                muka maupun kelas daring.
-              </div>
-            </div>
-          </div>
+            </column>
+          </row>
+
           <!-- <md-card style="background-color: #0F0F5F; border-radius: 15px">
             <div class="container card-program">
               <h1>{{ programData.nama_program }}</h1>
@@ -151,6 +120,9 @@ export default {
   components: {
     GoTop
   },
+  data() {
+    return {};
+  },
   name: "profil",
   bodyClass: "index-page",
   props: {
@@ -176,11 +148,7 @@ export default {
     }
   },
   computed: {
-    ...mapState("program", ["programData", "programList"]),
-    ...mapState("detailProgram", ["detailProgramList"]),
-    ...mapState("gallery", ["galleryList"]),
-    ...mapState("testimoni", ["testimoniList"]),
-    ...mapState("peserta", ["pesertaList"]),
+    ...mapState("info", ["infoList", "latestList", "postList"]),
     headerStyle() {
       return {
         // backgroundImage: `url(${this.homeGalleryData.sampul_image})`
@@ -193,18 +161,11 @@ export default {
     }
   },
   methods: {
-    ...mapActions("program", ["getProgram", "getProgramList"]),
-    ...mapActions("detailProgram", ["getDetailProgramList"]),
-    ...mapActions("gallery", ["getGalleryList"]),
-    ...mapActions("testimoni", ["getTestimoniList"]),
-    ...mapActions("peserta", ["getPesertaList"]),
+    ...mapActions("info", ["getInfoList", "getLatestList", "getPostList"]),
     async onFetchData() {
-      await this.getProgram({ id: this.$route.params.id });
-      await this.getDetailProgramList();
-      await this.getProgramList();
-      await this.getGalleryList();
-      await this.getTestimoniList();
-      await this.getPesertaList();
+      await this.getInfoList();
+      await this.getLatestList();
+      await this.getPostList();
     },
     onResponsiveInverted() {
       if (window.innerWidth < 600) {
@@ -254,5 +215,28 @@ export default {
   .btn-container {
     display: flex;
   }
+}
+</style>
+<style lang="css">
+.latest {
+  font-size: 0.9rem;
+  text-align: justify;
+  color: #0f0f5f;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.post {
+  text-align: justify;
+  color: #0f0f5f;
+  margin-bottom: -8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 </style>

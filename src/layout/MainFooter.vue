@@ -31,7 +31,7 @@
             </a>
           </li>
           <li>
-            <a href="javascript:void(0)" style="letter-spacing: 2px">
+            <a href="#/blog" style="letter-spacing: 2px">
               Blog
             </a>
           </li>

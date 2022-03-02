@@ -81,7 +81,9 @@
               class="fa fa-edit"
               aria-hidden="true"
               style="color: #4583bd; font-size: 20px; padding: 10px 10px 10px 15px"
-              ><md-tooltip md-direction="bottom">Update Sambutan</md-tooltip></i
+              ><md-tooltip md-direction="bottom"
+                >Update Detail Program</md-tooltip
+              ></i
             >
           </div>
         </router-link>

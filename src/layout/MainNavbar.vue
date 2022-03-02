@@ -108,7 +108,7 @@
 
               <li class="md-list-item" style="margin-left: 10px">
                 <a
-                  href="javascript:void(0)"
+                  href="#/blog"
                   class="md-list-item-router md-list-item-container md-button-clean dropdown"
                 >
                   <div class="md-list-item-content">

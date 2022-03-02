@@ -77,6 +77,9 @@
           >
             {{ item.tahun }}
           </md-table-cell>
+          <md-table-cell md-label="Date">
+            {{ item.updated_at }}
+          </md-table-cell>
           <md-table-cell md-label="Keterangan" style="min-width: 200px">
             {{ item.info }}
           </md-table-cell>
@@ -131,7 +134,7 @@
 <script>
 import { mapState, mapActions } from "vuex";
 import { LOGOUT } from "@/services/store/auth.module";
-// import moment from "moment";
+import moment from "moment";
 
 const toLower = text => {
   return text.toString().toLowerCase();
@@ -171,6 +174,9 @@ export default {
     ...mapActions("batch", ["getBatchList", "deleteBatch"]),
     async onFetchData() {
       await this.getBatchList();
+      this.batchList.updated_at = moment(this.batchList.updated_at).format(
+        "DD MMMM yyyy"
+      );
     },
     onDelete(id) {
       this.$confirm({

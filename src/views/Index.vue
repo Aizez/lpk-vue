@@ -63,96 +63,125 @@
         style="width: 100%; margin-top: -7px"
       />
       <div class="section section-basic" style="padding-bottom: 100px">
-        <!-- <div class="container">
-          <h1
+        <div class="container" style="margin-top: -50px;">
+          <!-- <h1
             class="title"
-            style="color:#0f0f5f; font-size: 45px; margin-bottom: 50px"
+            style="color:#0f0f5f; font-size: 42px; margin-bottom: 10px"
           >
             Informasi Terbaru
           </h1>
-          <div class="md-layout md-size-50">
-            <div class="md-layout-item">
-              <img
-                :src="info"
-                :class="{ 'responsive-image': responsive }"
-                class="img-raised img-fluid"
-                style="border-radius: 10px; width: 500px; height: auto;"
-              />
-            </div>
-            <div class="md-layout-item">
-              <div style="font-size: 12px; color: #0F0F5F">
-                1 Januari 2022
+          <hr style="color: solid; width: 100%" /> -->
+
+          <row
+            :gutter="12"
+            :columns="10"
+            style="margin-top: 40px;"
+            v-for="(latest, key) in latestList"
+            :key="key"
+          >
+            <column :xs="10" :lg="6" style="padding: 10px;">
+              <div v-for="(info, key) in infoList" :key="key">
+                <div v-if="info.title == latest.title">
+                  <img
+                    :src="info.image"
+                    :class="{ 'responsive-image': responsive }"
+                    class="img-raised img-fluid"
+                    style="border-radius: 20px; width: 700px; height: auto;"
+                  />
+                </div>
               </div>
+            </column>
+            <column :xs="10" :lg="4" style="padding: 0px 20px">
               <div
                 class="title"
                 style="margin-top: 0px; margin-bottom: 15px; font-size: 30px; line-height: 35px; text-align: justify;"
               >
-                Kembali Dibuka! Kelas Program A, Januari 2022
+                {{ latest.title }}
               </div>
-              <div style="text-align: justify; color: #0F0F5F">
+              <div class="latest" v-html="latest.text"></div>
+              <div style="margin-top: 10px; font-size: 12px; color: #0F0F5F">
+                <strong>{{ latest.date | moment("dddd, D MMMM YYYY") }}</strong>
+              </div>
+            </column>
+          </row>
+
+          <VueSlickCarousel v-bind="setting">
+            <column
+              :xs="10"
+              :lg="4"
+              v-for="(preview, key) in previewList.data"
+              :key="key"
+            >
+              <div v-for="(info, key) in infoList" :key="key">
+                <div v-if="info.title == preview.title">
+                  <img
+                    :src="info.image"
+                    :class="{ 'responsive-image': responsive }"
+                    class="img-raised img-fluid"
+                    style="border-radius: 20px; width: 700px; height: auto;"
+                  />
+                </div>
+              </div>
+              <h4>
+                <strong>{{ preview.title }}</strong>
+              </h4>
+              <h5 v-html="preview.text"></h5>
+              <h6>
+                {{ preview.date | moment("dddd, D MMMM YYYY") }}
+              </h6>
+            </column>
+
+            <!-- <column :xs="10" :lg="4">
+              <img
+                :src="info"
+                :class="{ 'responsive-image': responsive }"
+                class="img-raised img-fluid"
+                style="border-radius: 20px; width: 700px; height: auto;"
+              />
+              <h4>
+                <strong>Kembali Dibuka! Kelas Program A, Januari 2022</strong>
+              </h4>
+              <h5>
                 Kelas Program A pada Januari 2022 kembali dibuka. Para peserta
                 dapat mengikuti kembali kelas seperti biasa melalui kelas tatap
                 muka maupun kelas daring.
-              </div>
-            </div>
-          </div>
-        </div> -->
-
-        <!-- <div class="container" style="margin-top: 20px">
-          <div class="md-layout md-size-50">
-            <div class="md-layout-item">
-              <div class="md-layout md-size-30">
-                <div
-                  class="md-layout-item"
-                  style="padding-right:25px"
-                  v-for="(info, key) in infoList"
-                  :key="key"
+              </h5>
+              <h6>
+                1 Januari 2022
+              </h6>
+            </column>
+            <column :xs="10" :lg="4">
+              <img
+                :src="info"
+                :class="{ 'responsive-image': responsive }"
+                class="img-raised img-fluid"
+                style="border-radius: 20px; width: 700px; height: auto;"
+              />
+              <h4>
+                <strong>Kembali Dibuka! Kelas Program A, Januari 2022</strong>
+              </h4>
+              <h5>
+                Kelas Program A pada Januari 2022 kembali dibuka. Para peserta
+                dapat mengikuti kembali kelas seperti biasa melalui kelas tatap
+                muka maupun kelas daring.
+              </h5>
+              <h6>
+                1 Januari 2022
+              </h6>
+            </column> -->
+          </VueSlickCarousel>
+          <div class="container" style="margin-top: 15px">
+            <a href="#/blog" style="text-align: center">
+              <md-button class="abipraya md-lg">
+                <span
+                  style="color: white; font-size: 14px; text-transform: capitalize; bottom: 5px"
                 >
-                  <router-link
-                    :to="{
-                      name: 'new-info',
-                      params: { id: item.id }
-                    }"
-                  >
-                    <md-card style="box-shadow: none !important">
-                      <img
-                        :src="info"
-                        :class="{ 'responsive-image': responsive }"
-                        class="img-raised img-fluid"
-                        style="border-radius: 10px; width: 400px; height: auto;"
-                      />
-                      <div style="padding: 12px 2px">
-                        <div style="font-size: 12px">1 Januari 2022</div>
-                        <div
-                          class="title"
-                          style="margin-top: 0px; margin-bottom: 10px; font-size: 20px; line-height: 25px"
-                        >
-                          Kembali Dibuka! Kelas Program A, Januari 2022
-                        </div>
-                        <div style="text-align: justify; font-size: 14px">
-                          Kelas Program A pada Januari 2022 kembali dibuka. Para
-                          peserta dapat mengikuti kembali kelas seperti biasa
-                          melalui kelas tatap muka maupun kelas daring.
-                        </div>
-                      </div>
-                    </md-card>
-                  </router-link>
-                </div>
-              </div>
-              <div class="container" style="margin-top: 5px">
-                <a href="#/all-new-info" style="text-align: center">
-                  <md-button class="abipraya md-lg">
-                    <span
-                      style="color: white; font-size: 14px; text-transform: capitalize; bottom: 5px"
-                    >
-                      Baca lebih lanjut
-                    </span>
-                  </md-button>
-                </a>
-              </div>
-            </div>
+                  Baca lebih lanjut
+                </span>
+              </md-button>
+            </a>
           </div>
-        </div> -->
+        </div>
 
         <!-- <div class="main" style="margin-top: 70px;">
           <img
@@ -169,7 +198,7 @@
           />
         </div> -->
 
-        <div class="container" style="margin-top: 0px">
+        <div class="container" style="margin-top: 200px">
           <h1
             class="title"
             style="color:#0f0f5f; font-size: 45px; margin-bottom: 30px"
@@ -229,10 +258,15 @@
 import BasicElements from "./components/BasicElementsSection";
 import { mapState, mapActions } from "vuex";
 import GoTop from "@inotom/vue-go-top";
+import VueSlickCarousel from "vue-slick-carousel";
+import "vue-slick-carousel/dist/vue-slick-carousel.css";
+// optional style for arrows & dots
+import "vue-slick-carousel/dist/vue-slick-carousel-theme.css";
 
 export default {
   components: {
-    GoTop
+    GoTop,
+    VueSlickCarousel
   },
   name: "index",
   bodyClass: "index-page",
@@ -256,15 +290,55 @@ export default {
   },
   data() {
     return {
-      leafShow: false
+      leafShow: false,
+      setting: {
+        dots: true,
+        infinite: true,
+        centerMode: true,
+        centerPadding: "0px",
+        focusOnSelect: true,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        initialSlide: 0,
+        draggable: true,
+        useTransform: true,
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 2,
+              dots: true
+            }
+          },
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 2,
+              initialSlide: 2
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          }
+        ]
+      }
     };
   },
   methods: {
     ...mapActions("program", ["getProgramList"]),
-    ...mapActions("info", ["getInfoList"]),
+    ...mapActions("info", ["getInfoList", "getLatestList", "getPreviewList"]),
     async onFetchData() {
       await this.getProgramList();
       await this.getInfoList();
+      await this.getLatestList();
+      await this.getPreviewList();
     },
     onResponsiveInverted() {
       if (window.innerWidth < 600) {
@@ -279,7 +353,7 @@ export default {
   },
   computed: {
     ...mapState("program", ["programList"]),
-    ...mapState("info", ["infoList"]),
+    ...mapState("info", ["infoList", "latestList", "previewList"]),
     headerStyle() {
       return {
         // backgroundImage: `url(${this.homeGalleryData.sampul_image})`
@@ -324,6 +398,17 @@ export default {
 </style>
 
 <style lang="css">
+.latest {
+  font-size: 0.9rem;
+  text-align: justify;
+  color: #0f0f5f;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
 div.parallax p.h1 {
   font-size: 80px;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;

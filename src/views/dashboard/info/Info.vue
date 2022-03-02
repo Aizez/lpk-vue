@@ -28,30 +28,36 @@
       style="margin-top: 65px;"
       v-if="auth.user.level == 'superuser' || auth.user.level == 'admin'"
     >
-      <i class="fa fa-book" style="padding-right: 10px; font-size: 40px"></i
-      ><strong>List Info Pelatihan</strong>
+      <i
+        class="fa fa-paper-plane"
+        style="padding-right: 10px; font-size: 40px"
+      ></i
+      ><strong>Post Blog</strong>
     </h3>
     <div
-      class="main card-dashboard"
+      style="margin-top: 30px; min-height: 700px; padding-bottom: 30px"
       v-if="auth.user.level == 'superuser' || auth.user.level == 'admin'"
     >
       <div
         class="main main-raised"
-        style="border-radius: 50px; float:right; top: 45px; right: 20px; height: 0px"
+        style="border-radius: 50px; float:right; top: -10px; right: -5px; height: 0px;"
       >
         <a
-          href="#/dashboard/info-create"
+          href="#/dashboard/blog-create"
           class="md-list-item-router md-layout gradient2"
           style="border-radius: 50px; box-shadow: 5px 5px #c5c5c5"
         >
           <md-button
             class="md-button1 md-simple"
-            style="height: 40px; width: 200px;"
+            style="height: 40px; width: 230px;"
           >
+            <!-- <p style="color: white; font-size: 20px; padding: 10px 7px 0px 0px">
+              +
+            </p> -->
             <span
               style="color: white; font-size: 14px; text-transform: capitalize"
             >
-              Tambah Info
+              Tambah Post Baru
             </span>
           </md-button>
         </a>
@@ -67,28 +73,23 @@
           <md-table-cell
             md-label="Title"
             md-sort-by="title"
-            style="min-width: 300px"
+            style="min-width: 200px"
           >
             {{ item.title }}
           </md-table-cell>
           <md-table-cell
             md-label="Text"
-            md-sort-by="text"
-            style="max-width: 2000px; padding-right: 20px; text-align: justify"
+            style="padding-right: 20px; text-align: justify"
           >
-            <div v-html="item.text"></div>
-          </md-table-cell>
-          <md-table-cell
-            md-label="Date"
-            md-sort-by="date"
-            style="min-width: 150px"
-          >
-            {{ item.date }}
+            <span
+              v-html="item.text"
+              style="width: 400px; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"
+            ></span>
           </md-table-cell>
           <md-table-cell md-label="Image" md-sort-by="image">
-            <img :src="item.image" style="width: 50%" />
+            <img :src="item.image" style="width: 20%" />
           </md-table-cell>
-          <md-table-cell style="padding-left: 10px">
+          <md-table-cell style="padding-left: 30px">
             <router-link
               :to="{
                 name: 'info-update',
@@ -102,9 +103,7 @@
                 color: #0b76e0;
                 font-size: 18px;
               "
-                ><md-tooltip md-direction="bottom"
-                  >Update Program Pelatihan</md-tooltip
-                ></i
+                ><md-tooltip md-direction="bottom">Update Post</md-tooltip></i
               >
             </router-link>
           </md-table-cell>
@@ -119,7 +118,7 @@
                 class="fa fa-times"
                 aria-hidden="true"
                 style="font-size: 20px !important"
-                ><md-tooltip md-direction="bottom">Delete Info</md-tooltip></i
+                ><md-tooltip md-direction="bottom">Delete Post</md-tooltip></i
               >
             </md-button>
           </md-table-cell>
@@ -137,7 +136,6 @@
 <script>
 import { mapState, mapActions } from "vuex";
 import { LOGOUT } from "@/services/store/auth.module";
-import moment from "moment";
 
 const toLower = text => {
   return text.toString().toLowerCase();
@@ -177,11 +175,10 @@ export default {
     ...mapActions("info", ["getInfoList", "deleteInfo"]),
     async onFetchData() {
       await this.getInfoList();
-      this.infoList.date = moment(this.infoList.date).format("DD MMMM yyyy");
     },
     onDelete(id) {
       this.$confirm({
-        message: `Yakin ingin menghapus data Info Pelatihan?`,
+        message: `Yakin ingin menghapus postingan?`,
         button: {
           no: "Batal",
           yes: "Ya"

@@ -125,8 +125,8 @@ export default new Router({
       }
     },
     {
-      path: "/blog/:id",
-      name: "blog",
+      path: "/page/:id",
+      name: "page",
       components: {
         default: SingleBlog,
         header: MainNavbar,
@@ -299,7 +299,7 @@ export default new Router({
     },
 
     {
-      path: "/dashboard/info",
+      path: "/dashboard/blog",
       name: "info",
       components: {
         default: Info,
@@ -312,7 +312,7 @@ export default new Router({
       }
     },
     {
-      path: "/dashboard/info-create",
+      path: "/dashboard/blog-create",
       name: "info-create",
       components: {
         default: InfoCreate,
@@ -325,7 +325,7 @@ export default new Router({
       }
     },
     {
-      path: "/dashboard/info-update/:id",
+      path: "/dashboard/blog-update/:id",
       name: "info-update",
       components: {
         default: InfoUpdate,

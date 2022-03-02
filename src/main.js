@@ -23,6 +23,7 @@ import VueQuillEditor from "vue-quill-editor";
 import VShowSlide from "v-show-slide";
 import VueConfirmDialog from "vue-confirm-dialog";
 import { Row, Column } from "vue-grid-responsive";
+// import VueMoment from "vue-moment";
 
 // import Kmeans from "node-kmeans";
 
@@ -37,11 +38,14 @@ Vue.use(MaterialKit);
 Vue.use(Vuelidate);
 Vue.use(VueQuillEditor /* { default global options } */);
 Vue.use(VShowSlide);
+Vue.use(require("vue-moment"));
+// Vue.use(VueMoment);
 
 Vue.use(VueConfirmDialog);
 Vue.component("vue-confirm-dialog", VueConfirmDialog.default);
 Vue.component("row", Row);
 Vue.component("column", Column);
+
 // Vue.use(Kmeans);
 
 ApiService.init();

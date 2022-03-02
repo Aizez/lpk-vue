@@ -244,23 +244,23 @@
               </p>
             </md-button>
           </a>
-          <!-- <a
-            href="#/dashboard/info"
+          <a
+            href="#/dashboard/blog"
             class="md-list-item-router md-list-item-container md-button-clean"
             style="height: 10px; padding: 0px 0px 60px 0px"
             v-if="auth.user.level == 'superuser' || auth.user.level == 'admin'"
           >
             <md-button class="md-white md-simple" style="height: 50px">
               <i
-                class="fa fa-address-book"
+                class="fa fa-paper-plane"
                 aria-hidden="true"
                 style="padding-right: 30px"
               ></i>
               <p class="md-list-item-text side">
-                Info
+                Post Blog
               </p>
             </md-button>
-          </a> -->
+          </a>
         </div>
       </div>
       <slot name="content"></slot>
