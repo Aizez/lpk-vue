@@ -80,28 +80,44 @@
             :key="key"
           >
             <column :xs="10" :lg="6" style="padding: 10px;">
-              <div v-for="(info, key) in infoList" :key="key">
-                <div v-if="info.title == latest.title">
-                  <img
-                    :src="info.image"
-                    :class="{ 'responsive-image': responsive }"
-                    class="img-raised img-fluid"
-                    style="border-radius: 20px; width: 700px; height: auto;"
-                  />
+              <router-link
+                :to="{
+                  name: 'page',
+                  params: { id: latest.id }
+                }"
+              >
+                <div v-for="(info, key) in infoList" :key="key">
+                  <div v-if="info.title == latest.title">
+                    <img
+                      :src="info.image"
+                      :class="{ 'responsive-image': responsive }"
+                      class="img-raised img-fluid"
+                      style="border-radius: 20px; width: 700px; height: auto;"
+                    />
+                  </div>
                 </div>
-              </div>
+              </router-link>
             </column>
             <column :xs="10" :lg="4" style="padding: 0px 20px">
-              <div
-                class="title"
-                style="margin-top: 0px; margin-bottom: 15px; font-size: 30px; line-height: 35px; text-align: justify;"
+              <router-link
+                :to="{
+                  name: 'page',
+                  params: { id: latest.id }
+                }"
               >
-                {{ latest.title }}
-              </div>
-              <div class="latest" v-html="latest.text"></div>
-              <div style="margin-top: 10px; font-size: 12px; color: #0F0F5F">
-                <strong>{{ latest.date | moment("dddd, D MMMM YYYY") }}</strong>
-              </div>
+                <div
+                  class="title"
+                  style="margin-top: 0px; margin-bottom: 15px; font-size: 30px; line-height: 35px; text-align: justify;"
+                >
+                  {{ latest.title }}
+                </div>
+                <div class="latest" v-html="latest.text"></div>
+                <div style="margin-top: 10px; font-size: 12px; color: #0F0F5F">
+                  <strong>{{
+                    latest.date | moment("dddd, D MMMM YYYY")
+                  }}</strong>
+                </div>
+              </router-link>
             </column>
           </row>
 
@@ -112,70 +128,37 @@
               v-for="(preview, key) in previewList.data"
               :key="key"
             >
-              <div v-for="(info, key) in infoList" :key="key">
-                <div v-if="info.title == preview.title">
-                  <img
-                    :src="info.image"
-                    :class="{ 'responsive-image': responsive }"
-                    class="img-raised img-fluid"
-                    style="border-radius: 20px; width: 700px; height: auto;"
-                  />
+              <router-link
+                :to="{
+                  name: 'page',
+                  params: { id: preview.id }
+                }"
+              >
+                <div v-for="(info, key) in infoList" :key="key">
+                  <div v-if="info.title == preview.title">
+                    <img
+                      :src="info.image"
+                      :class="{ 'responsive-image': responsive }"
+                      class="img-raised img-fluid"
+                      style="border-radius: 20px; width: 700px; height: auto;"
+                    />
+                  </div>
                 </div>
-              </div>
-              <h4>
-                <strong>{{ preview.title }}</strong>
-              </h4>
-              <h5 v-html="preview.text"></h5>
-              <h6>
-                {{ preview.date | moment("dddd, D MMMM YYYY") }}
-              </h6>
+                <h4>
+                  <strong>{{ preview.title }}</strong>
+                </h4>
+                <h5 v-html="preview.text"></h5>
+                <h6>
+                  {{ preview.date | moment("dddd, D MMMM YYYY") }}
+                </h6>
+              </router-link>
             </column>
-
-            <!-- <column :xs="10" :lg="4">
-              <img
-                :src="info"
-                :class="{ 'responsive-image': responsive }"
-                class="img-raised img-fluid"
-                style="border-radius: 20px; width: 700px; height: auto;"
-              />
-              <h4>
-                <strong>Kembali Dibuka! Kelas Program A, Januari 2022</strong>
-              </h4>
-              <h5>
-                Kelas Program A pada Januari 2022 kembali dibuka. Para peserta
-                dapat mengikuti kembali kelas seperti biasa melalui kelas tatap
-                muka maupun kelas daring.
-              </h5>
-              <h6>
-                1 Januari 2022
-              </h6>
-            </column>
-            <column :xs="10" :lg="4">
-              <img
-                :src="info"
-                :class="{ 'responsive-image': responsive }"
-                class="img-raised img-fluid"
-                style="border-radius: 20px; width: 700px; height: auto;"
-              />
-              <h4>
-                <strong>Kembali Dibuka! Kelas Program A, Januari 2022</strong>
-              </h4>
-              <h5>
-                Kelas Program A pada Januari 2022 kembali dibuka. Para peserta
-                dapat mengikuti kembali kelas seperti biasa melalui kelas tatap
-                muka maupun kelas daring.
-              </h5>
-              <h6>
-                1 Januari 2022
-              </h6>
-            </column> -->
           </VueSlickCarousel>
-          <div class="container" style="margin-top: 15px">
+
+          <div class="container" style="margin-top: 15px;">
             <a href="#/blog" style="text-align: center">
-              <md-button class="abipraya md-lg">
-                <span
-                  style="color: white; font-size: 14px; text-transform: capitalize; bottom: 5px"
-                >
+              <md-button class="abipraya md-lg read-more">
+                <span class="text-read-more">
                   Baca lebih lanjut
                 </span>
               </md-button>
@@ -198,28 +181,33 @@
           />
         </div> -->
 
-        <div class="container" style="margin-top: 200px">
-          <h1
-            class="title"
-            style="color:#0f0f5f; font-size: 45px; margin-bottom: 30px"
-          >
-            Program Pelatihan LPK
-          </h1>
-          <div class="md-layout">
-            <div
-              class="md-layout-item md-size-33"
-              style="padding-right:25px"
-              v-for="(program, key) in programList"
-              :key="key"
+        <div class="container" style="padding: 200px 0px">
+          <div class="set-index">
+            <h1
+              class="title"
+              style="color:#0f0f5f; font-size: 45px; margin-bottom: 30px"
             >
-              <router-link
-                :to="{
-                  name: 'program',
-                  params: { id: program.id }
-                }"
+              Program Pelatihan LPK
+            </h1>
+            <row :gutter="12" :columns="12">
+              <column
+                :xs="6"
+                :lg="4"
+                style="padding-right: 20px"
+                v-for="(program, key) in programList"
+                :key="key"
               >
-                <md-card md-with-hover>
-                  <md-ripple>
+                <router-link
+                  :to="{
+                    name: 'program',
+                    params: { id: program.id }
+                  }"
+                >
+                  <md-card
+                    class="card-index"
+                    style="background-color: #0f0f5f"
+                    md-with-hover
+                  >
                     <img
                       :src="program.image"
                       :class="{ 'responsive-image': responsive }"
@@ -227,14 +215,14 @@
                       style="border-radius: 5px;"
                     />
                     <md-card-header style="padding-bottom: 10px">
-                      <div class="md-title" style="text-align: center">
-                        {{ program.nama_program }}
+                      <div class="text-index">
+                        <strong>{{ program.nama_program }}</strong>
                       </div>
                     </md-card-header>
-                  </md-ripple>
-                </md-card>
-              </router-link>
-            </div>
+                  </md-card>
+                </router-link>
+              </column>
+            </row>
           </div>
         </div>
       </div>
@@ -292,7 +280,6 @@ export default {
     return {
       leafShow: false,
       setting: {
-        dots: true,
         infinite: true,
         centerMode: true,
         centerPadding: "0px",
@@ -308,8 +295,7 @@ export default {
             breakpoint: 1024,
             settings: {
               slidesToShow: 2,
-              slidesToScroll: 2,
-              dots: true
+              slidesToScroll: 2
             }
           },
           {
@@ -409,6 +395,20 @@ export default {
   -webkit-box-orient: vertical;
 }
 
+.text-index {
+  font-size: 20px;
+  text-align: center;
+  letter-spacing: 0.7px;
+  color: #fae019;
+}
+
+.text-read-more {
+  color: #fae019;
+  font-size: 14px;
+  text-transform: capitalize;
+  bottom: 5px;
+}
+
 div.parallax p.h1 {
   font-size: 80px;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
@@ -436,6 +436,30 @@ div.parallax p.p2 {
   div.parallax p.p2 {
     font-size: 17px;
     line-height: 15px;
+  }
+
+  .set-index {
+    padding-left: 15px;
+  }
+
+  .text-index {
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  h1.title {
+    text-align: center;
+    line-height: 50px;
+    padding-right: 10px;
+  }
+
+  .text-read-more {
+    font-size: 12px;
+  }
+
+  .read-more {
+    height: 50px !important;
+    width: 150px !important;
   }
 }
 </style>

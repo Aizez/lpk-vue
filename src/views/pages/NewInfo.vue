@@ -12,46 +12,30 @@
         style="width: 100%; margin-top: -7px"
       />
       <div class="section section-basic" style="padding-bottom: 0px">
-        <div class="container" style="margin-top: -50px;">
-          <h1
-            class="title"
-            style="color:#0f0f5f; font-size: 42px; margin-bottom: 10px"
-          >
-            Post Terbaru
-          </h1>
-          <hr style="color: solid; width: 100%" />
-
+        <div class="container" style="padding: 0px 20px">
+          <div style="margin-top: 10px; font-size: 12px; color: #0F0F5F">
+            <strong>{{
+              infoData.updated_at | moment("dddd, D MMMM YYYY")
+            }}</strong>
+          </div>
           <div
-            class="section section-basic"
-            style="margin-top: 40px;"
-            v-for="(date, key) in dateList"
-            :key="key"
+            class="title"
+            style="margin-top: 0px; margin-bottom: 50px; font-size: 40px; line-height: 50px; text-align: justify;"
           >
-            <div class="container" style="padding: 0px 20px">
-              <div
-                class="title"
-                style="margin-top: 0px; margin-bottom: 15px; font-size: 30px; line-height: 35px; text-align: justify;"
-              >
-                {{ date.title }}
-              </div>
-              <div style="margin-top: 10px; font-size: 12px; color: #0F0F5F">
-                <strong>{{ date.date | moment("dddd, D MMMM YYYY") }}</strong>
-              </div>
-              <div class="container" style="padding: 10px;">
-                <div v-for="(info, key) in infoList" :key="key">
-                  <div v-if="info.title == date.title">
-                    <img
-                      :src="info.image"
-                      :class="{ 'responsive-image': responsive }"
-                      class="img-raised img-fluid"
-                      style="border-radius: 20px; width: 700px; height: auto;"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="posted" v-html="date.text"></div>
+            {{ infoData.title }}
+          </div>
+
+          <div class="container" style="padding: 10px;">
+            <div class="md-layout md-alignment-center-center">
+              <img
+                :src="infoData.image"
+                :class="{ 'responsive-image': responsive }"
+                class="img-raised img-fluid"
+                style="border-radius: 20px; width: auto; max-height: 500px;"
+              />
             </div>
           </div>
+          <div class="posted" v-html="infoData.text"></div>
         </div>
       </div>
       <img
@@ -107,7 +91,7 @@ export default {
     }
   },
   computed: {
-    ...mapState("info", ["infoList", "date"]),
+    ...mapState("info", ["infoData", "postList"]),
     headerStyle() {
       return {
         // backgroundImage: `url(${this.homeGalleryData.sampul_image})`
@@ -120,10 +104,10 @@ export default {
     }
   },
   methods: {
-    ...mapActions("info", ["getInfoList", "getDate"]),
+    ...mapActions("info", ["getInfo", "getPostList"]),
     async onFetchData() {
-      await this.getInfoList();
-      await this.getDateList();
+      await this.getInfo({ id: this.$route.params.id });
+      await this.getPostList();
     },
     onResponsiveInverted() {
       if (window.innerWidth < 600) {
@@ -177,9 +161,10 @@ export default {
 </style>
 <style lang="css">
 .posted {
-  font-size: 0.9rem;
+  font-size: 1rem;
   text-align: justify;
   color: #0f0f5f;
+  margin-top: 30px;
 }
 
 .post {

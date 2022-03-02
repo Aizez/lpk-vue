@@ -40,7 +40,7 @@
     >
       <div
         class="main main-raised"
-        style="border-radius: 50px; float:right; top: -10px; right: -5px; height: 0px;"
+        style="border-radius: 50px; float:right; top: 30px; right: -5px; height: 0px;"
       >
         <a
           href="#/dashboard/blog-create"
@@ -63,22 +63,43 @@
         </a>
       </div>
       <md-table
-        v-model="infoList"
+        v-model="searched"
         md-sort="name"
         md-sort-order="asc"
-        style="padding: 50px 20px 0px 20px; border-radius: 20px;"
+        style="padding: 40px 20px 20px 20px; border-radius: 20px;"
         md-fixed-header
       >
-        <md-table-row slot="md-table-row" slot-scope="{ item }">
+        <md-table-toolbar
+          style="background-color: white !important; margin: 0px 0px 30px -15px;;"
+        >
+          <div class="md-toolbar-section-start"></div>
+          <md-field
+            md-clearable
+            style="padding: 7px 0px 0px 10px; background-color: #f3f2f2; border-radius: 5px"
+          >
+            <label style="padding: 7px 10px 5px 7px"
+              >Cari Berdasarkan Judul Post...</label
+            >
+            <md-input v-model="search" @input="searchOnTable" />
+          </md-field>
+        </md-table-toolbar>
+
+        <md-table-empty-state> </md-table-empty-state>
+        <md-table-row
+          slot="md-table-row"
+          v-for="(info, key) in infoList"
+          :key="key"
+          slot-scope="{ item }"
+        >
           <md-table-cell
-            md-label="Title"
+            md-label="Judul"
             md-sort-by="title"
             style="min-width: 200px"
           >
             {{ item.title }}
           </md-table-cell>
           <md-table-cell
-            md-label="Text"
+            md-label="Konten"
             style="padding-right: 20px; text-align: justify"
           >
             <span
@@ -141,12 +162,22 @@ const toLower = text => {
   return text.toString().toLowerCase();
 };
 
+const searchByName = (items, term) => {
+  if (term) {
+    return items.filter(item => toLower(item.title).includes(toLower(term)));
+  }
+
+  return items;
+};
+
 export default {
   components: {},
   bodyClass: "login-page",
   //   data() {},
   data: () => ({
-    classicModal: false
+    classicModal: false,
+    search: "",
+    searched: []
   }),
   props: {
     header: {
@@ -219,6 +250,9 @@ export default {
         this.responsive = false;
       }
     },
+    searchOnTable() {
+      this.searched = searchByName(this.infoList, this.search);
+    },
     classicModalHide() {
       this.classicModal = false;
     }
@@ -229,7 +263,7 @@ export default {
     window.addEventListener("resize", this.onResponsiveInverted);
   },
   created() {
-    this.searched = this.mataKuliahList;
+    this.searched = this.infoList;
   }
 };
 </script>

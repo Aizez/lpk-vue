@@ -29,28 +29,44 @@
             :key="key"
           >
             <column :xs="10" :lg="6" style="padding: 10px;">
-              <div v-for="(info, key) in infoList" :key="key">
-                <div v-if="info.title == latest.title">
-                  <img
-                    :src="info.image"
-                    :class="{ 'responsive-image': responsive }"
-                    class="img-raised img-fluid"
-                    style="border-radius: 20px; width: 700px; height: auto;"
-                  />
+              <router-link
+                :to="{
+                  name: 'page',
+                  params: { id: latest.id }
+                }"
+              >
+                <div v-for="(info, key) in infoList" :key="key">
+                  <div v-if="info.title == latest.title">
+                    <img
+                      :src="info.image"
+                      :class="{ 'responsive-image': responsive }"
+                      class="img-raised img-fluid"
+                      style="border-radius: 20px; width: 700px; height: auto;"
+                    />
+                  </div>
                 </div>
-              </div>
+              </router-link>
             </column>
             <column :xs="10" :lg="4" style="padding: 0px 20px">
-              <div
-                class="title"
-                style="margin-top: 0px; margin-bottom: 15px; font-size: 30px; line-height: 35px; text-align: justify;"
+              <router-link
+                :to="{
+                  name: 'page',
+                  params: { id: latest.id }
+                }"
               >
-                {{ latest.title }}
-              </div>
-              <div class="latest" v-html="latest.text"></div>
-              <div style="margin-top: 10px; font-size: 12px; color: #0F0F5F">
-                <strong>{{ latest.date | moment("dddd, D MMMM YYYY") }}</strong>
-              </div>
+                <div
+                  class="title"
+                  style="margin-top: 0px; margin-bottom: 15px; font-size: 30px; line-height: 35px; text-align: justify;"
+                >
+                  {{ latest.title }}
+                </div>
+                <div class="latest" v-html="latest.text"></div>
+                <div style="margin-top: 10px; font-size: 12px; color: #0F0F5F">
+                  <strong>{{
+                    latest.date | moment("dddd, D MMMM YYYY")
+                  }}</strong>
+                </div>
+              </router-link>
             </column>
           </row>
 
@@ -62,26 +78,33 @@
               v-for="(post, key) in postList.data"
               :key="key"
             >
-              <div v-for="(info, key) in infoList" :key="key">
-                <div v-if="info.title == post.title">
-                  <img
-                    :src="info.image"
-                    :class="{ 'responsive-image': responsive }"
-                    class="img-raised img-fluid"
-                    style="border-radius: 20px; width: 700px; height: auto;"
-                  />
-                </div>
-              </div>
-              <div
-                class="title"
-                style="margin-top: 20px; margin-bottom: 15px; font-size: 18px; line-height: 22px; text-align: justify;"
+              <router-link
+                :to="{
+                  name: 'page',
+                  params: { id: post.id }
+                }"
               >
-                {{ post.title }}
-              </div>
-              <div class="post" v-html="post.text"></div>
-              <div style="font-size: 11px; color: #0F0F5F; padding-top: 10px">
-                <strong>{{ post.date | moment("dddd, D MMMM YYYY") }}</strong>
-              </div>
+                <div v-for="(info, key) in infoList" :key="key">
+                  <div v-if="info.title == post.title">
+                    <img
+                      :src="info.image"
+                      :class="{ 'responsive-image': responsive }"
+                      class="img-raised img-fluid"
+                      style="border-radius: 20px; width: 700px; height: auto;"
+                    />
+                  </div>
+                </div>
+                <div
+                  class="title"
+                  style="margin-top: 20px; margin-bottom: 15px; font-size: 18px; line-height: 22px; text-align: justify;"
+                >
+                  {{ post.title }}
+                </div>
+                <div class="post" v-html="post.text"></div>
+                <div style="font-size: 11px; color: #0F0F5F; padding-top: 10px">
+                  <strong>{{ post.date | moment("dddd, D MMMM YYYY") }}</strong>
+                </div>
+              </router-link>
             </column>
           </row>
 

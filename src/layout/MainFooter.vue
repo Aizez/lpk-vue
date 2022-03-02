@@ -71,7 +71,10 @@
       </div>
     </div>
     <div class="container mx-auto">
-      <div class="copyright mx-auto" style="color: white; letter-spacing: 1px">
+      <div
+        class="copyright mx-auto"
+        style="color: #fae019; letter-spacing: 1px"
+      >
         <!-- <strong>&copy; Xyziz_ {{ year }}, Universitas Pembangunan Jaya</strong> -->
         <strong
           >&copy; PT Brantas Abipraya | {{ year }} All Right Reserved</strong

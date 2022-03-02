@@ -53,7 +53,7 @@
           <div class="md-layout md-gutter">
             <div class="md-layout-item md-small-size-100">
               <md-field :class="getValidationClass('title')">
-                <label for="title">Title...</label>
+                <label for="title">Judul...</label>
                 <md-input
                   name="title"
                   id="title"
@@ -63,7 +63,7 @@
                 >
                 </md-input>
                 <span class="md-error" v-if="!$v.infoData.title.required"
-                  >Title is required</span
+                  >Judul is required</span
                 >
               </md-field>
             </div>
@@ -88,7 +88,7 @@
           <br />
           <div class="md-layout md-gutter">
             <div class="md-layout-item md-small-size-100">
-              <label for="text">Detail Post...</label>
+              <label for="text">Konten...</label>
               <md-field :class="getValidationClass('text')">
                 <quill-editor
                   ref="myQuillEditor"
@@ -104,7 +104,7 @@
                   style="min-height: 200px; max-height: 500px"
                 />
                 <span class="md-error" v-if="!$v.infoData.text.required"
-                  >The welcome speech is required</span
+                  >Konten is required</span
                 >
               </md-field>
             </div>

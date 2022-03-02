@@ -37,7 +37,7 @@
     >
       <div
         class="main main-raised"
-        style="border-radius: 50px; float:right; top: 45px; right: 20px; height: 0px"
+        style="border-radius: 50px; float:right; top: 30px; right: 20px; height: 0px"
       >
         <a
           href="#/dashboard/peserta-create"
@@ -57,20 +57,34 @@
         </a>
       </div>
       <md-table
-        v-model="pesertaList"
+        v-model="searched"
         md-sort="name"
         md-sort-order="asc"
-        style="padding: 10px 20px 0px 20px; border-radius: 20px;"
+        style="padding: 40px 20px 0px 20px; border-radius: 20px;"
         md-fixed-header
       >
         <md-table-toolbar
-          style="padding-left: 10px; background-color: white !important"
+          style="padding-left: 0px; background-color: white !important"
         >
           <div class="md-toolbar-section-start">
             <md-field
-              style="margin-left: 5px; padding: 5px 0px 0px 15px; max-width: 300px;"
+              md-clearable
+              style="padding: 7px 0px 0px 10px; background-color: #f3f2f2; border-radius: 5px"
             >
-              <label>Pilih Batch Pelatihan...</label>
+              <label style="padding: 7px 10px 5px 7px"
+                >Cari Berdasarkan Nama Peserta...</label
+              >
+              <md-input v-model="search" @input="searchOnTable" />
+            </md-field>
+            <br />
+          </div>
+          <!-- <div class="md-toolbar-section-end">
+            <md-field
+              style="margin-left: 5px; padding: 5px 0px 0px 15px; max-width: 300px;"
+              ><md-tooltip md-direction="bottom"
+                >Masukkan Nama Peserta <br />Terlebih Dahulu</md-tooltip
+              >
+              <label>Pilih Pelatihan...</label>
               <md-select
                 name="batch.id"
                 id="batch.id"
@@ -89,10 +103,18 @@
                 </md-option>
               </md-select>
             </md-field>
-          </div>
+          </div> -->
         </md-table-toolbar>
 
-        <md-table-row slot="md-table-row" slot-scope="{ item }">
+        <md-table-empty-state> </md-table-empty-state>
+
+        <md-table-row
+          slot="md-table-row"
+          v-for="(peserta, key) in pesertaList"
+          :key="key"
+          slot-scope="{ item }"
+          style="margin-top: 30px"
+        >
           <md-table-cell md-label="NIP" md-sort-by="nip">
             {{ item.nip }}
           </md-table-cell>
@@ -162,13 +184,21 @@ const toLower = text => {
   return text.toString().toLowerCase();
 };
 
+const searchByName = (items, term) => {
+  if (term) {
+    return items.filter(item => toLower(item.nama).includes(toLower(term)));
+  }
+
+  return items;
+};
+
 export default {
   components: {},
   bodyClass: "login-page",
   //   data() {},
   data: () => ({
     classicModal: false,
-    search: "x",
+    search: "",
     searched: [],
     selectedBatch: ""
   }),
@@ -250,6 +280,7 @@ export default {
       this.getPesertaList({
         batch_id: this.selectedBatch
       });
+      this.searched = searchByName(this.pesertaList, this.search);
     },
     classicModalHide() {
       this.classicModal = false;
@@ -261,7 +292,7 @@ export default {
     window.addEventListener("resize", this.onResponsiveInverted);
   },
   created() {
-    this.searched = this.batchList;
+    this.searched = this.pesertaList;
   }
 };
 </script>
