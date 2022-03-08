@@ -18,10 +18,7 @@
               infoData.updated_at | moment("dddd, D MMMM YYYY")
             }}</strong>
           </div>
-          <div
-            class="title"
-            style="margin-top: 0px; margin-bottom: 50px; font-size: 40px; line-height: 50px; text-align: justify;"
-          >
+          <div class="title page">
             {{ infoData.title }}
           </div>
 
@@ -176,5 +173,23 @@ export default {
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+}
+
+.page {
+  margin-top: 0px !important;
+  margin-bottom: 50px;
+  font-size: 40px;
+  line-height: 50px;
+  text-align: justify;
+}
+
+@media screen and (max-width: 700px) {
+  .page {
+    margin-top: 0px !important;
+    margin-bottom: 50px;
+    font-size: 27px;
+    line-height: 32px;
+    text-align: justify;
+  }
 }
 </style>

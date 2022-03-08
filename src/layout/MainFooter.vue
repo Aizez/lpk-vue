@@ -44,7 +44,7 @@
       </nav>
       <div class="copyright" style="margin-top: -50px">
         <p style="font-weight: 400; letter-spacing: 1px">Connect with us</p>
-        <a href="#/">
+        <a href="https://www.youtube.com/channel/UCX3Aez1DThZqzLNjOF7hnwA">
           <img
             class="md-title"
             :src="yb"
@@ -52,7 +52,7 @@
             style="height: 65px;padding: 5px 5px 15px 0px;margin-right:5px;"
           />
         </a>
-        <a href="/#">
+        <a href="https://www.instagram.com/lpk_abipraya/">
           <img
             class="md-title"
             :src="ig"
@@ -60,7 +60,7 @@
             style="height: 65px;padding: 5px 5px 15px 0px;margin-right:5px;"
           />
         </a>
-        <a href="/#">
+        <a href="https://www.facebook.com/LPK-Abipraya-102161165760041">
           <img
             class="md-title"
             :src="fb"
