@@ -9,7 +9,6 @@ import Tabs from "./Tabs.vue";
 import Modal from "./Modal.vue";
 import PlanetChart from "./PlanetChart.vue";
 import PlanetChart2 from "./PlanetChart2.vue";
-import Kmeans from "./Kmeans.vue";
 
 export {
   DropDown,
@@ -22,6 +21,5 @@ export {
   Tabs,
   Modal,
   PlanetChart,
-  PlanetChart2,
-  Kmeans
+  PlanetChart2
 };

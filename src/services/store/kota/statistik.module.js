@@ -17,7 +17,7 @@ const actions = {
       let response = await ApiService.query("api/kota/statistik");
       context.commit("setStatistikList", response.data);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       throw error;
     }
   },
