@@ -44,11 +44,7 @@
         <div class="md-layout-item">
           <div class="brand">
             <div class="parallax">
-              <img
-                :src="home"
-                :class="{ 'responsive-image': responsive }"
-                style="width: 80%;"
-              />
+              <img :src="home" style="width: 80%;" />
             </div>
           </div>
         </div>
@@ -58,7 +54,6 @@
     <div class="main main-raised">
       <img
         :src="vector"
-        :class="{ 'responsive-image': responsive }"
         class="img-fluid"
         style="width: 100%; margin-top: -7px"
       />
@@ -90,7 +85,6 @@
                   <div v-if="info.title == latest.title">
                     <img
                       :src="info.image"
-                      :class="{ 'responsive-image': responsive }"
                       class="img-raised img-fluid"
                       style="border-radius: 20px; width: 700px; height: auto;"
                     />
@@ -138,7 +132,6 @@
                   <div v-if="info.title == preview.title">
                     <img
                       :src="info.image"
-                      :class="{ 'responsive-image': responsive }"
                       class="img-raised img-fluid"
                       style="border-radius: 20px; width: 700px; height: auto;"
                     />
@@ -147,7 +140,7 @@
                 <h4>
                   <strong>{{ preview.title }}</strong>
                 </h4>
-                <h5 v-html="preview.text"></h5>
+                <h5 class="latest" v-html="preview.text"></h5>
                 <h6>
                   {{ preview.date | moment("dddd, D MMMM YYYY") }}
                 </h6>
@@ -210,7 +203,6 @@
                   >
                     <img
                       :src="program.image"
-                      :class="{ 'responsive-image': responsive }"
                       class="img-raised img-fluid"
                       style="border-radius: 5px;"
                     />
@@ -228,7 +220,6 @@
       </div>
       <img
         :src="vector1"
-        :class="{ 'responsive-image': responsive }"
         class="img-fluid"
         style="width: 100%; margin-bottom: -6px"
       />
@@ -326,13 +317,13 @@ export default {
       await this.getLatestList();
       await this.getPreviewList();
     },
-    onResponsiveInverted() {
-      if (window.innerWidth < 600) {
-        this.responsive = true;
-      } else {
-        this.responsive = false;
-      }
-    },
+    // onResponsiveInverted() {
+    //   if (window.innerWidth < 600) {
+    //     this.responsive = true;
+    //   } else {
+    //     this.responsive = false;
+    //   }
+    // },
     classicModalHide() {
       this.classicModal = false;
     }
@@ -359,7 +350,7 @@ export default {
   //   window.removeEventListener("resize", this.leafActive);
   // },
   async mounted() {
-    await this.onResponsiveInverted();
+    // await this.onResponsiveInverted();
     await this.onFetchData();
     // console.log(process.env.VUE_APP_BASE_URL);
     window.addEventListener("resize", this.onResponsiveInverted);

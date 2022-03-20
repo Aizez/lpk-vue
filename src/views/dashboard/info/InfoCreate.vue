@@ -212,7 +212,7 @@ export default {
           }
           // let image = this.$refs.image.files[0];
           formData.append("image", this.image);
-          await this.createGallery({
+          await this.createInfo({
             id: this.$route.params.id,
             payload: formData
           });
